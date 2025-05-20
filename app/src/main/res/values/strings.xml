@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">InstabugAndroidJava</string>
+    <string name="full_prompt">Full prompt</string>
+    <string name="bug">Bug</string>
+    <string name="screenshot">Screenshot</string>
+    <string name="floating_button">Floating Button</string>
+    <string name="shake">Shake</string>
+    <string name="show_prompt_options">Show prompt options</string>
+    <string name="_2_finger_swipe">2-Finger Swipe</string>
+    <string name="feedback">Feedback</string>
+    <string name="question">Question</string>
+    <string name="set_invocation_events">Set invocation events</string>
+    <string name="bug_reporting">Bug Reporting</string>
+    <string name="enable">Enable</string>
+    <string name="invocation_events">Invocation events</string>
+    <string name="more_settings">More settings</string>
+    <string name="disable">Disable</string>
+</resources>

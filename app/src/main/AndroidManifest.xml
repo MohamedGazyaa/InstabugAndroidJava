@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.InstabugAndroidJava"
+        tools:targetApi="31">
+        <activity
+            android:name=".sdkSettingsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FeatureRequestsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ProductsNavigationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SurveysActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SessionReplayActivity"
+            android:exported="false" />
+        <activity
+            android:name=".APMActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CrashReportingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".BugReportingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
