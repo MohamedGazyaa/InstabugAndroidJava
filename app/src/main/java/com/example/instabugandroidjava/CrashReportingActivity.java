@@ -21,8 +21,11 @@ import androidx.core.view.WindowInsetsCompat;
 import com.instabug.crash.CrashReporting;
 import com.instabug.crash.models.IBGNonFatalException;
 import com.instabug.library.Feature;
+import com.instabug.library.Instabug;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class CrashReportingActivity extends AppCompatActivity {
 
@@ -42,6 +45,9 @@ public class CrashReportingActivity extends AppCompatActivity {
         LinearLayout contentLayout = findViewById(R.id.contentLayout);
         RadioGroup crashLevelGroup = findViewById(R.id.ManualCrashLevelGroup);
         Button reportManualCrashBtn = findViewById(R.id.reportManualCrashBtn);
+        Button reportFatalCrashBtn = findViewById(R.id.reportFatalCrashBtn);
+        Button reportANRCrashBtn = findViewById(R.id.reportANRCrashBtn);
+        Button reportOOMCrashBtn = findViewById(R.id.reportOOMCrashBtn);
         RadioGroup ANROptionsGroup = findViewById(R.id.ANROptionsGroup);
         RadioGroup NDKOptionsGroup = findViewById(R.id.NDKOptionsGroup);
         Button saveChanges = findViewById(R.id.saveChangesBtn);
@@ -107,6 +113,35 @@ public class CrashReportingActivity extends AppCompatActivity {
            }
        });
 
+       reportFatalCrashBtn.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               int crash = 10 / 0;
+           }
+       });
+
+       reportANRCrashBtn.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               try {
+                   Thread.sleep(10000);
+               } catch (InterruptedException e) {
+                   throw new RuntimeException(e);
+               }
+           }
+       });
+
+       reportOOMCrashBtn.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               Instabug.setTrackingUserStepsState(Feature.State.ENABLED);
+               List<byte[]> memoryHog = new ArrayList<>();
+               while (true) {
+                   memoryHog.add(new byte[1024 * 1024]); // Allocate 1MB repeatedly
+               }
+           }
+       });
+
        saveChanges.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
@@ -115,9 +150,11 @@ public class CrashReportingActivity extends AppCompatActivity {
                if(selectedID != -1){
                    if(selectedID== R.id.enableANR){
                        CrashReporting.setAnrState(Feature.State.ENABLED);
+                       reportANRCrashBtn.setVisibility(View.VISIBLE);
                        ANROptionsGroup.clearCheck();
                    } else if (selectedID == R.id.disableANR) {
                        CrashReporting.setAnrState(Feature.State.DISABLED);
+                       reportANRCrashBtn.setVisibility(View.GONE);
                        ANROptionsGroup.clearCheck();
                    }
                }
